@@ -1,13 +1,6 @@
 #include <Adafruit_NeoPixel.h>
 #include "ledmeteorites.h"
 
-//#define LED_PIN 5     //pin connected to led strip
-//#define LED_MIC A0    //pin connected to microfon
-
-//#define LED_COUNT 297  //number of leds
-
-//Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
-
 int farben_len = sizeof(farben) / sizeof(farben[0]);
 
 void setup() {
@@ -73,9 +66,6 @@ void single_meteor(uint32_t color, int pos, int meteor_length){
 }
 
 void regenbogen_meteor(int wait, int meteor_length){
-  //rot, orange, gelb, grün, blau, indigo, violett
-  
-  
   for(int i=0; i<strip.numPixels(); i++) {
     strip.clear();
     for(int m=0; m<meteor_length; m++) {
