@@ -1,5 +1,5 @@
 #include <Adafruit_NeoPixel.h>
-#include "meteortest.h"
+#include "ledmeteorites.h"
 
 //#define LED_PIN 5     //pin connected to led strip
 //#define LED_MIC A0    //pin connected to microfon
@@ -17,28 +17,24 @@ void setup() {
 }
 
 void loop() {
-  //meteor(strip.Color(50,123,255), 10, 50);
-  //regenbogen_meteor(70, 40);
-  //multi_meteor(strip.Color(50,123,255), 100, 15);
-  rainbow_multi_meteor(40);
+  rainbow_multi_meteor(100);
   /*
-  jederZweite(strip.Color(50,123,255), 200);
-  colorWipe(strip.Color(255,   0,   0), 50); // Red
-  colorWipe(strip.Color(  0, 255,   0), 50); // Green
-  colorWipe(strip.Color(  0,   0, 255), 50); // Blue
+  meteor(strip.Color(50,123,255), 10, 50);
+  regenbogen_meteor(70, 40);
+  multi_meteor(strip.Color(50,123,255), 100, 15);
   */
 }
 
 void rainbow_multi_meteor(int wait) {
   for(int i=0; i<strip.numPixels(); i++) {
     strip.clear();
-    single_rainbow_meteor(i + 1, 5);
-    single_rainbow_meteor(i + 15, 10);
-    single_rainbow_meteor(i + 60, 3);
-    single_rainbow_meteor(i + 95, 12);
-    single_rainbow_meteor(i + 120, 7);
-    single_rainbow_meteor(i + 166, 4);
-    single_rainbow_meteor(i + 200, 22);
+    single_rainbow_meteor(i, 20);
+    single_rainbow_meteor(i + 40, 20);
+    single_rainbow_meteor(i + 80, 20);
+    single_rainbow_meteor(i + 140, 20);
+    single_rainbow_meteor(i + 180, 20);
+    single_rainbow_meteor(i + 220, 20);
+    single_rainbow_meteor(i + 260, 20);
     strip.show();
     delay(wait);
   }
@@ -49,6 +45,8 @@ void single_rainbow_meteor(int pos, int meteor_length){
       int pixel = pos-m;
       if (pixel >= 0){
         strip.setPixelColor(pixel % LED_COUNT, farben[m % farben_len]);
+      }else{
+        strip.setPixelColor(pixel % LED_COUNT+pixel, farben[m % farben_len]);
       }
   }
 }
