@@ -3,6 +3,8 @@
 
 int farben_len = sizeof(farben) / sizeof(farben[0]);
 
+//TODO: different speed for each meteor
+
 void setup() {
   strip.begin();           // INITIALIZE NeoPixel strip object (REQUIRED)
   strip.show();            // Turn OFF all pixels ASAP
@@ -36,18 +38,14 @@ void rainbow_multi_meteor(int wait) {
 void single_rainbow_meteor(int pos, int meteor_length){
   for(int m=0; m<meteor_length; m++) {
       int pixel = pos-m;
-      if (pixel >= 0){
-        strip.setPixelColor(pixel % LED_COUNT, farben[m % farben_len]);
-      }else{
-        strip.setPixelColor(pixel % LED_COUNT+pixel, farben[m % farben_len]);
-      }
+      strip.setPixelColor(pixel % LED_COUNT, farben[m % farben_len]);
   }
 }
 
 void multi_meteor(uint32_t color, int wait) {
   for(int i=0; i<strip.numPixels(); i++) {
     strip.clear();
-    single_meteor(color, i + 1, 5);
+    single_meteor(color, i, 5);
     single_meteor(color, i + 15, 10);
     single_meteor(color, i + 60, 3);
     single_meteor(color, i + 150, 15);
@@ -59,9 +57,7 @@ void multi_meteor(uint32_t color, int wait) {
 void single_meteor(uint32_t color, int pos, int meteor_length){
   for(int m=0; m<meteor_length; m++) {
       int pixel = pos-m;
-      if (pixel >= 0){
-        strip.setPixelColor(pixel % LED_COUNT, color);
-      }
+      strip.setPixelColor(pixel % LED_COUNT, color);
   }
 }
 
