@@ -17,5 +17,9 @@ uint32_t blau = strip.Color(0,0,255);
 //uint32_t indigo = strip.Color(75,0,130);
 uint32_t violet = strip.Color(136,0,255);
 uint32_t pink = strip.Color(255,0,255);
+
+uint32_t off = strip.Color(0,0,0);
   
 uint32_t farben[] = {rot, orange, gelb, chartreuse, gruen, babyblau, blau, violet, pink};
+
+uint32_t lastTimes[10];
